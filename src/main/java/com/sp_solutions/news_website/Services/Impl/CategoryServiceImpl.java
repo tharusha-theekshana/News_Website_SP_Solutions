@@ -20,14 +20,16 @@ public class CategoryServiceImpl implements CategoryService {
         this.categoryRepo = categoryRepo;
     }
 
+    // Service for add category
     @Override
     public ResponseEntity<String> addCategory(Category category) {
         try{
-            if (category != null){
-                categoryRepo.save(category);
-                return new ResponseEntity(StringConstants.ADD_CATEGORY,HttpStatus.OK);
+            if (category.getCategoryName() == null || category.getCategoryName().isEmpty()){
+                return new ResponseEntity(StringConstants.NOT_FOUND_CATEGORY,HttpStatus.BAD_REQUEST);
             }
-            return new ResponseEntity(StringConstants.NOT_FOUND_CATEGORY,HttpStatus.BAD_REQUEST);
+            categoryRepo.save(category);
+            return new ResponseEntity(StringConstants.ADD_CATEGORY,HttpStatus.CREATED);
+
 
         }catch (Exception e){
             e.printStackTrace();
@@ -35,6 +37,7 @@ public class CategoryServiceImpl implements CategoryService {
         }
     }
 
+    // Service for get all categories
     @Override
     public List<Category> getAllCategories() {
         try{

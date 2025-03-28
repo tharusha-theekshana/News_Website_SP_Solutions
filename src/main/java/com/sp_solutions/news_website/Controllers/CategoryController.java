@@ -20,6 +20,7 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
+    // Method for add category
     @PostMapping
     public ResponseEntity<String> addCategory(@RequestBody Category category){
         try{
@@ -30,6 +31,7 @@ public class CategoryController {
         return new ResponseEntity(StringConstants.SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    // Method for get all categories
     @GetMapping
     public List<Category> getAllCategories(){
         try{

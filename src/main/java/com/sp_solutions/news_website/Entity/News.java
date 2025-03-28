@@ -22,7 +22,11 @@ public class News {
 
     private String description;
 
-    @ManyToMany(mappedBy = "news")
-    @JoinTable(name = "news_category", joinColumns = @JoinColumn(name = "news_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
+    @ManyToMany
+    @JoinTable(
+            name = "news_category",
+            joinColumns = @JoinColumn(name = "news_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
     private Set<Category> categorySet = new HashSet<>();
 }
